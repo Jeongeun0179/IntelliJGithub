@@ -39,12 +39,23 @@
         quantity = quantity + 1;
     </insert>
 
-    <update id="quantity" parameterType="cartto">
-        update orderdetail set quantity = quantity + 1
-        where coffee_id=#{coffee_id} and orderdetail_id=#{orderdetail_id}
+    <select id="selectfor_cartpersis" resultType="cartto">
+        select quantity, order_id, coffee_id
+        from orderdetail
+    </select>
+
+    <insert id="insertAllinto_cartpersis" parameterType="cartto">
+        insert into cartpersis
+        values ( #{quantity}, #{order_id}, #{coffee_id} )
+    </insert>
+
+    <update id="updateorderidinto_cartpersis" parameterType="int">
+        update cartpersis
+        set order_id = #{order_id}
+        where order_id = 0
     </update>
 
-    <delete id="cart_delete" parameterType="cartto">
+    <delete id="cart_delete" parameterType="java.lang.Integer">
         delete from orderdetail;
     </delete>
 </mapper>

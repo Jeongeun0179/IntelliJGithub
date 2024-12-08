@@ -27,12 +27,10 @@ public class CartController {
     @RequestMapping("/list.do")
     public String list(HttpServletRequest req, Model model) {
         List<Coffee> coffeeList = cartService.coffeeSelect();
-        System.out.println("coffeeList : " + coffeeList);
         model.addAttribute("coffeeLists", coffeeList);
 
         Cart cart = new Cart();
         Coffee coffee = new Coffee();
-        Order order = new Order();
 
 
         if (req.getParameter("coffee_id") != null) {

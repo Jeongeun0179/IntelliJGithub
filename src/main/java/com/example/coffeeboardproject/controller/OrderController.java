@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class OrderController {
@@ -40,16 +41,16 @@ public class OrderController {
         order.setOrder_date(request.getParameter("orderDate"));
 
         model.addAttribute("orderFlag", orderService.orderInsert(order));
-        //System.out.println("order.getOrder_id()1: " + order.getOrder_id());
 
         Cart cart = new Cart();
-//        cart.setOrder_id(order.getOrder_id());
-//        System.out.println("order.getOrder_id(): " + order.getOrder_id());
-//        cart.setQuantity(cart.getQuantity());
-//        System.out.println("cart.getQuantity(): " + cart.getQuantity());
-//        cart.setCoffee_id(Integer.parseInt(request.getParameter("coffeeId")));
-//        model.addAttribute("cartFinalFlag", cartService.cartFinalInsert(cart));
 
+        List<Cart> selectforCartpersisList = cartService.selectforCartpersis();
+        for (Cart car : selectforCartpersisList) {
+            System.out.println(car);
+            cartService.insertAllintoCartpersis(car);
+        }
+
+        cartService.updateOrderIdintoCartpersis(order.getOrder_id());
         model.addAttribute("deleteFlag", cartService.cartDelete(cart));
 
         return "board_manager1";

@@ -52,7 +52,7 @@
 				for ( Cart cart : cartSelectAll) {
 					for (Coffee coffee : cart.getCoffee()) {
 						String coffeeName = coffee.getCoffee_name();
-						System.out.println("coffeeName: " + coffeeName);
+						//System.out.println("coffeeName: " + coffeeName);
 						int quantity = cart.getQuantity();
 						//System.out.println("coffeePrice: " + coffeePrice);
 

@@ -22,7 +22,7 @@ public class CartService {
         System.out.println("coffeeSelect 호출");
         List<Coffee> lists = coffeeMapper.coffee_select();
 
-        System.out.println("coffeeSelect " + lists.size());
+        //System.out.println("coffeeSelect " + lists.size());
 
         return lists;
     }
@@ -41,7 +41,7 @@ public class CartService {
         System.out.println("cartSelect 호출");
 
         cart = cartMapper.orderdetail_select(cart);
-        System.out.println("cart: " + cart.toString());
+        //System.out.println("cart: " + cart.toString());
 
         return cart;
     }
@@ -49,8 +49,47 @@ public class CartService {
     public int cartInsert(Cart cart) {
         System.out.println("cartInsert 호출");
         int flag = 2;
-        System.out.println("cartInsert_quantity: " + cart.getQuantity());
+        //System.out.println("cartInsert_quantity: " + cart.getQuantity());
         int result = cartMapper.orderdetail_insert(cart);
+
+        if (result == 1) {
+            flag = 0;
+        } else {
+            flag = 1;
+        }
+
+        return flag;
+    }
+
+
+    public List<Cart> selectforCartpersis() {
+        System.out.println("selectforCartpersis 호출");
+        List<Cart> lists = cartMapper.selectfor_cartpersis();
+
+        System.out.println("selectforCartpersisListssize: " + lists.size());
+
+        return lists;
+    }
+
+    public int updateOrderIdintoCartpersis(int orderid) {
+        System.out.println("insertintoCartpersis 호출");
+
+        int flag =2;
+        int result = cartMapper.updateorderidinto_cartpersis(orderid);
+
+        if (result == 1) {
+            flag = 0;
+        } else {
+            flag = 1;
+        }
+
+        return flag;
+    }
+
+    public int insertAllintoCartpersis(Cart cart) {
+        System.out.println("insertAllintoCartpersis 호출");
+        int flag =2;
+        int result = cartMapper.insertAllinto_cartpersis(cart);
 
         if (result == 1) {
             flag = 0;
@@ -71,8 +110,7 @@ public class CartService {
         } else {
             flag = 0;
         }
-        //System.out.println("cartDeleteflagresult: "+ result );
-        //System.out.println("cartDeleteflag: " + flag );
+
         return flag;
     }
 

@@ -13,4 +13,7 @@ public interface CartMapper {
     int orderdetail_insert(Cart cart);
     int cart_delete(Cart cart);
     int orderdetail_finalinsert(Cart cart);
+    List<Cart> selectfor_cartpersis();
+    int updateorderidinto_cartpersis(int orderid);
+    int insertAllinto_cartpersis(Cart cart);
 }
